@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <!--Firebase link-->
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+
+    <!--moment.js link-->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+
+    <!--Bootstrap link-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+    <title>Train Scheduler</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-4">Train Scheduler</h1>
+                <p class="lead">All abroad, mahfuggies</p>
+            </div>
+        </div>
+    </header>
+
+    <br><br>
+
+    <section>
+        <table class="table table-sm table-dark mx-3">
+            <thead>
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Last Train</th>
+                    <td>Hell</td>
+                    <td>13 minutes</td>
+                    <td>7:23</td>
+                    <td>5 minutes</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <br><br>
+
+    <section>
+        <form>
+            <div class="form-group">
+                <label for="name-input">Train Name</label>
+                <input type="text" class="form-control" id="name-input" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="dest-input">Destination</label>
+                <input type="text" class="form-control" id="dest-input" placeholder="Enter destination">
+            </div>
+            <div class="form-group">
+                <label for="first-input">First Train Time (HH:mm - military time)</label>
+                <input type="text" class="form-control" id="first-input" placeholder="Enter time of first train">
+            </div>
+            <div class="form-group">
+                <label for="freq-input">Frequency</label>
+                <input type="text" class="form-control" id="freq-input" placeholder="Enter frequency">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </section>
+
+<!--jQuery link-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+
+<!--Javascript file link-->
+<script src="assets/javascript/app.js"></script>
+   
+</body>
+</html>
