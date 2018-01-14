@@ -48,8 +48,6 @@ $(document).on('click', '#submit', function(e) {
         frequency: frequency
     };
    
-  
-    // var arr = [];
-
-    // arr.push(name, destination, firstTrain, frequency);
+    database.ref().push(dataObj);
+   
 });
