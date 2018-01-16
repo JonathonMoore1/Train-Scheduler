@@ -12,13 +12,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-database.ref().on('child_added', function(childSnapshot) {
-    console.log(childSnapshot.val().name);
-    console.log(childSnapshot.val().destination);
-    console.log(childSnapshot.val().first_train);
-    console.log(childSnapshot.val().frequency);
-});
-
 //======================
 // Add new row on submit
 //======================
@@ -27,19 +20,12 @@ $(document).on('click', '#submit', function(e) {
     // Prevent submission
     e.preventDefault();
 
-    // Save the tbody element
-    var tBody = $('tbody');
-   
     // Save the values the user entered
     var name = $('#name-input').val().trim();
     var destination = $('#dest-input').val().trim();
     var firstTrain = $('#first-input').val().trim();
     var frequency = $('#freq-input').val().trim();
-
-    // Add new row with train information to the table
-    tBody.append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" +
-    firstTrain + "</td><td>" + frequency + "</td></tr>");
-
+    
     // Data object for Firebase
     var dataObj = {
         name: name,
@@ -47,7 +33,33 @@ $(document).on('click', '#submit', function(e) {
         first_train: firstTrain,
         frequency: frequency
     };
-   
+
+    // Push data object to firebase
     database.ref().push(dataObj);
-   
+
+    // Clear out form text boxes
+    $('#name-input').val("");
+    $('#dest-input').val("");
+    $('#first-input').val("");
+    $('#freq-input').val("");
+});
+
+database.ref().on('child_added', function(childSnapshot) {
+    var childName = childSnapshot.val().name;
+    var childDest = childSnapshot.val().destination;
+    var childFreq = childSnapshot.val().frequency;
+    var childFirst = childSnapshot.val().first_train;
+    
+    var currentTime = moment().format('HH:mm');
+    var firstConverted = moment(childFirst, 'hh:mm').subtract(1, 'years');
+    var diffTime = moment().diff(moment(firstConverted), 'minutes');
+    var tRemainder = diffTime % childFreq;
+    var tMinutesTill = childFreq - tRemainder;
+    var nextTrain = moment().add(tMinutesTill, 'minutes');
+    var nextConverted = moment(nextTrain).format('HH:mm'); 
+
+    var tBody = $('tbody');
+
+    tBody.append("<tr><td>" + childName + "</td><td>" + childDest + "</td><td>" +
+    childFreq + "</td><td>" + nextConverted + "</td><td>" + tMinutesTill + "</td></tr>");
 });
