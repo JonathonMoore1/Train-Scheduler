@@ -59,7 +59,7 @@ database.ref().on('child_added', function(childSnapshot) {
     var nextConverted = moment(nextTrain).format('HH:mm'); 
 
     var tBody = $('tbody');
-
+   
     tBody.append("<tr><td>" + childName + "</td><td>" + childDest + "</td><td>" +
     childFreq + "</td><td>" + nextConverted + "</td><td>" + tMinutesTill + "</td></tr>");
 });
